@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Le code morse</string>
+    <string name="name">Name</string>
+    <string name="espace">ESPACE</string>
+    <string name="barre">/</string>
+    <string name="effacer">EFFACER</string>
+    <string name="jouer">JOUER</string>
+    <string name="point">.</string>
+    <string name="tire">-</string>
+</resources>
