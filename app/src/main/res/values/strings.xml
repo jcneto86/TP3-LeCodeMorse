@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Le code morse</string>
-    <string name="name">Name</string>
+    <string name="alpha">CARACTERE ALPHA</string>
+    <string name="morse">CODE MORSE</string>
     <string name="espace">ESPACE</string>
     <string name="barre">/</string>
     <string name="effacer">EFFACER</string>
     <string name="jouer">JOUER</string>
     <string name="point">.</string>
     <string name="tire">-</string>
+    <string name="textview">Ecrire une phrase ou un code morse</string>
 </resources>
