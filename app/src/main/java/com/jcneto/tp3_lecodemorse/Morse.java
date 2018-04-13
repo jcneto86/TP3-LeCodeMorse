@@ -2,67 +2,76 @@ package com.jcneto.tp3_lecodemorse;
 
 import java.lang.String;
 
-/**
- * Created by jcneto on 18-04-09.
- */
+enum Morse {
 
-public enum Morse {
-
-    A(".-"),
-    B("-..."),
-    C("-.-."),
-    D("-.."),
-    E("."),
-    F("..-."),
-    G("--."),
-    H("...."),
-    I(".."),
-    J(".---"),
-    K("-.-"),
-    L(".-.."),
-    M("--"),
-    N("-."),
-    O("---"),
-    P(".--."),
-    Q("--.-"),
-    R(".-."),
-    S("..."),
-    T("-"),
-    U("..-"),
-    V("...-"),
-    W(".--"),
-    X("-..-"),
-    Y("-.--"),
-    Z("--.."),
-    ZERO('0', "-----"),
-    ONE('1', ".----"),
-    TWO('2', "..---"),
-    THREE('3', "...--"),
-    FOUR('4', "....-"),
-    FIVE('5', "....."),
-    SIX('6', "-...."),
-    SEVEN('7', "--..."),
-    EIGHT('8', "---.."),
-    NINE('9', "----.");
-
-    private char character;
-    private String code;
-
-    private Morse(char character, String code) {
-        this.character = character;
-        this.code = code;
-    }
-
-    Morse(String s) {
+        A('A', ".-"),
+        B('B', "-..."),
+        C('C', "-.-."),
+        D('D', "-.."),
+        E('E', "."),
+        F('F', "..-."),
+        G('G', "--."),
+        H('H', "...."),
+        I('I', ".."),
+        J('J', ".---"),
+        K('K', "-.-"),
+        L('L', ".-.."),
+        M('M', "--"),
+        N('N', "-."),
+        O('O', "---"),
+        P('P', ".--."),
+        Q('Q', "--.-"),
+        R('R', ".-."),
+        S('S', "..."),
+        T('T', "-"),
+        U('U', "..-"),
+        V('V', "...-"),
+        W('W', ".--"),
+        X('X', "-..-"),
+        Y('Y', "-.--"),
+        Z('Z', "--.."),
+        ZERO('0', "-----"),
+        UN('1', ".----"),
+        DEUX('2', "..---"),
+        TROIS('3', "...--"),
+        QUATRE('4', "....-"),
+        CINQ('5', "....."),
+        SIX('6', "-...."),
+        SEPT('7', "--..."),
+        HUIT('8', "---.."),
+        NEUF('9', "----."),
+        PONIT('.', ".-.-.-");
 
 
-    }
+        private char alpha;
+        private String morse;
 
-    public char getCharacter() {
-        return character;
-    }
+        Morse(char alpha, String morse) {
+            this.alpha = alpha;
+            this.morse = morse;
+        }
 
-    public String getCode() {
-        return code;
-    }
+        Morse(String s) {
+
+
+        }
+
+        @Override
+        public String toString() {
+            return "Morse {" +
+                    "alpha = " + alpha +
+                    ", morse = '" + morse + '\'' +
+                    '}';
+        }
+
+
+        public char getAlpha() {
+            return this.alpha;
+        }
+
+        public String getMorse() {
+            return this.morse;
+        }
+
+
 }

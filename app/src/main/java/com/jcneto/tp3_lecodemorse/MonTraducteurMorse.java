@@ -3,6 +3,8 @@ package com.jcneto.tp3_lecodemorse;
 
 public class MonTraducteurMorse implements TraducteurMorse {
 
+    private Morse[] arrayMorse = Morse.values();
+
     /**
      * Traduit du code Morse international en caracteres latins.
      * Les symboles permis sont ., -, / et l'espace. Si la chaine
@@ -26,7 +28,17 @@ public class MonTraducteurMorse implements TraducteurMorse {
      * @return L'equivalent en code Morse.
      */
     public String toMorse(String alpha) {
-        return "";
+        String arrayToConvertir = nettoyerAlpha(alpha);
+        String alphaToReturn = "";
+        for (int i = 0; i < arrayToConvertir.length(); i++) {
+            char g = arrayToConvertir.charAt(i);
+            for (int j = 0; j < arrayMorse.length; j++) {
+                if (g == arrayMorse[j].getAlpha()) {
+                    alphaToReturn += arrayMorse[j].getMorse();
+                }
+            }
+        }
+        return alphaToReturn;
     }
 
     /**
