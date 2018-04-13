@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                TextView textView = (TextView) findViewById(R.id.textView);
-                textView.setText(editable.toString());
+//                TextView textView = (TextView) findViewById(R.id.textView);
+//                textView.setText(editable.toString());
             }
         });
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                TextView textView = (TextView) findViewById(R.id.textView);
-                textView.setText(editable.toString());
+//                TextView textView = (TextView) findViewById(R.id.textView);
+//                textView.setText(editable.toString());
             }
         });
 

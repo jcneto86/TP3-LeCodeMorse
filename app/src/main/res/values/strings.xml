@@ -9,4 +9,5 @@
     <string name="point">.</string>
     <string name="tire">-</string>
     <string name="textview">Ecrire une phrase ou un code morse</string>
+    <string name="backendBy">Backend par/Backend by</string>
 </resources>

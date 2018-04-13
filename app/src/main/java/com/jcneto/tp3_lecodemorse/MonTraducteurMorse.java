@@ -40,11 +40,14 @@ public class MonTraducteurMorse implements TraducteurMorse {
      */
     public String nettoyerAlpha(String alpha) {
         String alphaNettoyer = alpha.toUpperCase();
-        alphaNettoyer.replaceAll("\\^[ÉËÈÊ]", "E");
-        alphaNettoyer.replaceAll("[ÁÄÀÃÂ]", "A");
-        alphaNettoyer.replaceAll("[ÍÏÌÎ]", "I");
-        alphaNettoyer.replaceAll("[ÓÖÒÕÔ]", "O");
-        alphaNettoyer.replaceAll("[Ç]", "C");
+        alphaNettoyer = alphaNettoyer.replaceAll("[ÉËÈÊ]", "E");
+        alphaNettoyer = alphaNettoyer.replaceAll("[ÁÄÀÃÂ]", "A");
+        alphaNettoyer = alphaNettoyer.replaceAll("[ÍÏÌÎ]", "I");
+        alphaNettoyer = alphaNettoyer.replaceAll("[ÓÖÒÕÔ]", "O");
+        alphaNettoyer = alphaNettoyer.replaceAll("[ÚÜÙÛ]", "U");
+        alphaNettoyer = alphaNettoyer.replaceAll("[Ç]", "C");
+        alphaNettoyer = alphaNettoyer.replaceAll("[Œ]", "OE");
+        alphaNettoyer = alphaNettoyer.replaceAll("[^a-zA-Z0-9 .]", "");
         return alphaNettoyer;
     }
 
@@ -55,7 +58,8 @@ public class MonTraducteurMorse implements TraducteurMorse {
      * @return Le nom des programmeurs qui ont implemente l'interface.
      */
     public String getNomProgrammeurs() {
-        String NomProgrammeurs = "João Carlos Fernandes Neto";
-        return NomProgrammeurs;
+        String joao = "FERNANDES NETO João Carlos";
+        String brice = "IGIRANEZA A. Brice";
+        return joao + " & " + brice;
     }
 }
