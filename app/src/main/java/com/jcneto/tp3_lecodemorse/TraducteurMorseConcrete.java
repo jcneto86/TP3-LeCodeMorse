@@ -1,7 +1,7 @@
 package com.jcneto.tp3_lecodemorse;
 
 
-public class MonTraducteurMorse implements TraducteurMorse {
+public class TraducteurMorseConcrete implements TraducteurMorse {
 
     private Morse[] arrayMorse = Morse.values();
 
@@ -59,7 +59,7 @@ public class MonTraducteurMorse implements TraducteurMorse {
         alphaNettoyer = alphaNettoyer.replaceAll("[ÚÜÙÛ]", "U");
         alphaNettoyer = alphaNettoyer.replaceAll("[Ç]", "C");
         alphaNettoyer = alphaNettoyer.replaceAll("[Œ]", "OE");
-        alphaNettoyer = alphaNettoyer.replaceAll("[^a-zA-Z0-9 .]", "");
+        alphaNettoyer = alphaNettoyer.replaceAll("[^A-Z0-9 .]", "");
         return alphaNettoyer;
     }
 

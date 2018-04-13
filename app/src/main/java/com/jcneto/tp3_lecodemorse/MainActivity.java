@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TraducteurMorse traducteurMorse = new MonTraducteurMorse();
+        TraducteurMorse traducteurMorse = new TraducteurMorseConcrete();
 
 //        EditText editText = (EditText) findViewById(R.id.editTextAlpha);
 //        editText.setText(traducteurMorse.getNomProgrammeurs());
