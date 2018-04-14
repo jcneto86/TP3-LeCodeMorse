@@ -4,6 +4,8 @@ package com.jcneto.tp3_lecodemorse;
 public class TraducteurMorseConcrete implements TraducteurMorse {
 
     private Morse[] arrayMorse = Morse.values();
+    private String programmeurA = "FERNANDES NETO João Carlos";
+    private String programmeurB = "IGIRANEZA A. Brice";
 
     /**
      * Traduit du code Morse international en caracteres latins.
@@ -29,6 +31,7 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
      */
     public String toMorse(String alpha) {
         String arrayToConvertir = nettoyerAlpha(alpha);
+        System.out.println(arrayToConvertir);
         String alphaToReturn = "";
         for (int i = 0; i < arrayToConvertir.length(); i++) {
             char g = arrayToConvertir.charAt(i);
@@ -36,6 +39,11 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
                 if (g == arrayMorse[j].getAlpha()) {
                     alphaToReturn += arrayMorse[j].getMorse();
                 }
+            }
+            if (" ".equals(String.valueOf(arrayToConvertir.charAt(i)))) {
+                alphaToReturn += "/";
+            } else {
+                alphaToReturn += " ";
             }
         }
         return alphaToReturn;
@@ -70,8 +78,7 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
      * @return Le nom des programmeurs qui ont implemente l'interface.
      */
     public String getNomProgrammeurs() {
-        String joao = "FERNANDES NETO João Carlos";
-        String brice = "IGIRANEZA A. Brice";
-        return joao + " & " + brice;
+
+        return programmeurA + " & " + programmeurB;
     }
 }
