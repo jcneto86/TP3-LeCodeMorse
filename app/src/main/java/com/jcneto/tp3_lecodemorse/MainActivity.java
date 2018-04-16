@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
-        EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
+        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+        final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
 
         // Listenre Button
         Button b = (Button) findViewById(R.id.btJouer);
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView textViewSorti = (TextView) findViewById(R.id.textSorti);
                 textViewSorti.setText(traducteurMorse.toAlpha(editable.toString()));
                 TextView textViewEntre = (TextView) findViewById(R.id.textEntre);
-                textViewEntre.setText(traducteurMorse.nettoyerAlpha(editable.toString()));
+                textViewEntre.setText(editTextMorse.getText());
             }
         });
 
