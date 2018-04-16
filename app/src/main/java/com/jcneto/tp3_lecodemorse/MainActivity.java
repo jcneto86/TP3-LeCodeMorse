@@ -17,10 +17,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TraducteurMorse traducteurMorse = new TraducteurMorseConcrete();
+        final TraducteurMorse traducteurMorse = new TraductuerMorseStub();
 
-//        EditText editText = (EditText) findViewById(R.id.editTextAlpha);
-//        editText.setText(traducteurMorse.getNomProgrammeurs());
+        TextView textLaibol = (TextView) findViewById(R.id.textLabel);
+        textLaibol.setText(traducteurMorse.getNomProgrammeurs());
 
         // Listenre Button
         Button b = (Button) findViewById(R.id.btJouer);
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         editTextAlpha.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -45,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-//                TextView textView = (TextView) findViewById(R.id.textView);
-//                textView.setText(editable.toString());
+                TextView textView = (TextView) findViewById(R.id.textSorti);
+                textView.setText(traducteurMorse.toMorse(editable.toString()));
             }
         });
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
@@ -63,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-//                TextView textView = (TextView) findViewById(R.id.textView);
-//                textView.setText(editable.toString());
+                TextView textView = (TextView) findViewById(R.id.textSorti);
+                textView.setText(traducteurMorse.toAlpha(editable.toString()));
             }
         });
 

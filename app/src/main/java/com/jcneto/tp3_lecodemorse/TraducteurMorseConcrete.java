@@ -1,6 +1,5 @@
 package com.jcneto.tp3_lecodemorse;
 
-
 public class TraducteurMorseConcrete implements TraducteurMorse {
 
     private Morse[] arrayMorse = Morse.values();
@@ -16,7 +15,19 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
      * @return L'equivalent en caracteres latins.
      */
     public String toAlpha(String morse) {
-        return "";
+        String[] morseToConvertir = morse.split("\\s");
+        String alphaToReturn = "";
+        for (int i = 0; i < morseToConvertir.length; i++) {
+            for (int j = 0; j < arrayMorse.length; j++) {
+                if (morseToConvertir[i].equals(arrayMorse[j].getMorse())) {
+                    alphaToReturn += arrayMorse[j].getAlpha();
+                }
+            }
+            if (morseToConvertir[i].equals("/")) {
+                alphaToReturn += " ";
+            }
+        }
+        return alphaToReturn;
     }
 
     /**
@@ -31,22 +42,21 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
      */
     public String toMorse(String alpha) {
         String arrayToConvertir = nettoyerAlpha(alpha);
-        System.out.println(arrayToConvertir);
-        String alphaToReturn = "";
+        String morseToReturn = "";
         for (int i = 0; i < arrayToConvertir.length(); i++) {
             char g = arrayToConvertir.charAt(i);
             for (int j = 0; j < arrayMorse.length; j++) {
                 if (g == arrayMorse[j].getAlpha()) {
-                    alphaToReturn += arrayMorse[j].getMorse();
+                    morseToReturn += arrayMorse[j].getMorse();
                 }
             }
             if (" ".equals(String.valueOf(arrayToConvertir.charAt(i)))) {
-                alphaToReturn += "/";
+                morseToReturn += "/ ";
             } else {
-                alphaToReturn += " ";
+                morseToReturn += " ";
             }
         }
-        return alphaToReturn;
+        return morseToReturn;
     }
 
     /**
@@ -67,7 +77,7 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
         alphaNettoyer = alphaNettoyer.replaceAll("[ÚÜÙÛ]", "U");
         alphaNettoyer = alphaNettoyer.replaceAll("[Ç]", "C");
         alphaNettoyer = alphaNettoyer.replaceAll("[Œ]", "OE");
-        alphaNettoyer = alphaNettoyer.replaceAll("[^A-Z0-9 .]", "");
+        alphaNettoyer = alphaNettoyer.replaceAll("[^a-zA-Z0-9 .]", "");
         return alphaNettoyer;
     }
 
@@ -78,7 +88,6 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
      * @return Le nom des programmeurs qui ont implemente l'interface.
      */
     public String getNomProgrammeurs() {
-
         return programmeurA + " & " + programmeurB;
     }
 }
