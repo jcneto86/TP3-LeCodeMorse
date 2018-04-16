@@ -19,12 +19,17 @@ public class TraductuerMorseStub implements TraducteurMorse {
 
     @Override
     public String toMorse(String alpha) {
-
+        if (alpha.equals("E"))
+            return ".";
+        if (alpha.equals("I"))
+            return "..";
+        if (alpha.equals("S"))
+            return "...";
         return null;
     }
 
     @Override
     public String nettoyerAlpha(String alpha) {
-        return null;
+        return alpha.toUpperCase();
     }
 }
