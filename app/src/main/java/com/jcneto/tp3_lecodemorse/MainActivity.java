@@ -1,6 +1,8 @@
 package com.jcneto.tp3_lecodemorse;
 
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String morse = "";
     private final TraducteurMorse traducteurMorse = new TraducteurMorseConcrete();
+    private AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
         final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Attention !");
+        builder.setMessage(
+                "Utilisez l'espace pour chaque code \n" +
+                        "de lettre tapé, et une barre oblique \n" +
+                        "pour marquer les espaces entre les mots.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(MainActivity.this, "Entre votre code morse" + arg1, Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert = builder.create();
+        alert.show();
+
+
 
         // Listenre Button
         Button b = (Button) findViewById(R.id.btJouer);
@@ -35,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         editTextAlpha.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
