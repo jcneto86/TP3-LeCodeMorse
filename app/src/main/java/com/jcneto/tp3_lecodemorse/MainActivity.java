@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private String morse = "";
     private final TraducteurMorse traducteurMorse = new TraducteurMorseConcrete();
     private AlertDialog alert;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,16 +30,15 @@ public class MainActivity extends AppCompatActivity {
                 "Utilisez l'espace pour chaque code \n" +
                         "de lettre tapé, et une barre oblique \n" +
                         "pour marquer les espaces entre les mots.");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+
+        {
             public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(MainActivity.this, "Entre votre code morse" + arg1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Entre votre code morse\n" + "ou une phrase alpha", Toast.LENGTH_SHORT).show();
             }
         });
         alert = builder.create();
         alert.show();
-
-
-
         // Listenre Button
         Button b = (Button) findViewById(R.id.btJouer);
         b.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void backEnd(View v) {
-        //Toast.makeText()
-    }
-
     public void funcTire(View v) {
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
         morse += "-";
@@ -118,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         morse += " ";
         editTextMorse.setText(morse);
     }
+
     public void funcEfface(View v) {
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
         final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
@@ -125,10 +120,36 @@ public class MainActivity extends AppCompatActivity {
         editTextMorse.setText("");
         editTextAlpha.setText("");
     }
+
     public void funcBackendBy(View v) {
-        Toast toast = Toast.makeText(getApplicationContext(),
-                traducteurMorse.getNomProgrammeurs() , Toast.LENGTH_LONG);
-        toast.show();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Attention !");
+        builder.setMessage(traducteurMorse.getNomProgrammeurs());
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(MainActivity.this, ":D", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert = builder.create();
+        alert.show();
+    }
+
+    public void alertAttention(View v) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Attention !");
+        builder.setMessage(
+                "Utilisez l'espace pour chaque code \n" +
+                        "de lettre tapé, et une barre oblique \n" +
+                        "pour marquer les espaces entre les mots.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+
+        {
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(MainActivity.this, "Entre votre code morse\n" + "ou une phrase alpha", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert = builder.create();
+        alert.show();
     }
 
 }
