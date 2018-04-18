@@ -2,6 +2,8 @@ package com.jcneto.tp3_lecodemorse;
 
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
+import android.media.TimedText;
+import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,12 +21,16 @@ public class MainActivity extends AppCompatActivity {
     private String alpha = "";
     private final TraducteurMorse traducteurMorse = new TraducteurMorseConcrete();
     private AlertDialog alert;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
         final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
+//        final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
+//        final MediaPlayer dit = MediaPlayer.create(this, R.raw.dit);
+//        final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
         // Pour afficher une msg
         /**
          *
@@ -45,13 +51,30 @@ public class MainActivity extends AppCompatActivity {
         alert = builder.create();
         alert.show();
         // Listenre Button
-        Button b = (Button) findViewById(R.id.btJouer);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("WoW");
-            }
-        });
+//        Button b = (Button) findViewById(R.id.btJouer);
+//        b.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                System.out.println("WoW");
+//                System.out.println(editTextMorse.getText().toString());
+//                String morse = editTextMorse.getText().toString();
+//                dit.start();
+//                for (int i = 0; i < morse.length(); i++) {
+//                    System.out.println("WoW");
+//                    String morseToPlay = String.valueOf(morse.charAt(i));
+//                    if (morseToPlay.equals(".")) {
+//                        dit.start();
+//                    } else if (morseToPlay.equals("-")) {
+//                        dah.start();
+//                    } else if (morseToPlay.equals(" ")) {
+//                        esp.start();
+//                    } else if (morseToPlay.equals("/")) {
+//                        esp.start();
+//                        esp.start();
+//                    }
+//                }
+//            }
+//        });
         // Listenre TextView
         editTextAlpha.addTextChangedListener(new TextWatcher() {
             @Override
@@ -97,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param v
      */
     public void funcTire(View v) {
@@ -107,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param v
      */
     public void funcPoint(View v) {
@@ -117,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param v
      */
     public void funBarreOblique(View v) {
@@ -127,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param v
      */
     public void funcEspace(View v) {
@@ -137,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param v
      */
     public void funcEfface(View v) {
@@ -150,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param v
      */
     public void funcBackendBy(View v) {
@@ -167,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param v
      */
     public void alertAttention(View v) {
@@ -188,28 +204,29 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-    public void playMorse(View v)
-    {
-        final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
-        final MediaPlayer dit = MediaPlayer.create(this, R.raw.dit);
-        final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
-        dit.start();
-        System.out.println(morse.toString());
-        String[] morseToPlay = morse.split("");
-        for (int i = 0; i < morseToPlay.length; i++) {
-            if (morseToPlay[i].equals("."))
-                dit.start();
-            if (morseToPlay[i].equals("-"))
-                dah.start();
-            if (morseToPlay[i].equals(" "))
-                esp.start();
-            if (morseToPlay[i].equals("/")) {
-                esp.start();
-                esp.start();
-            }
-
-        }
-
-    }
+//    public void playMorse(View v) {
+//        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+//        final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
+//        final MediaPlayer dit = MediaPlayer.create(this, R.raw.dit);
+//        final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
+//        String morse = editTextMorse.toString();
+//        dit.start();
+//        System.out.println(morse.toString());
+//        String[] morseToPlay = morse.split("");
+//        for (int i = 0; i < morseToPlay.length; i++) {
+//            if (morseToPlay[i].equals("."))
+//                dit.start();
+//            if (morseToPlay[i].equals("-"))
+//                dah.start();
+//            if (morseToPlay[i].equals(" "))
+//                esp.start();
+//            if (morseToPlay[i].equals("/")) {
+//                esp.start();
+//                esp.start();
+//            }
+//
+//        }
+//
+//    }
 
 }
