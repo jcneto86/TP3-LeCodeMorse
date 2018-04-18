@@ -1,6 +1,10 @@
 package com.jcneto.tp3_lecodemorse;
 
-public class TraducteurMorseTest {
+import junit.framework.TestCase;
+
+public class TraducteurMorseTest extends TestCase {
+
+
 
 
 }
