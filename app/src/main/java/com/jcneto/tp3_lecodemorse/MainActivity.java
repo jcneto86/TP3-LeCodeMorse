@@ -2,8 +2,7 @@ package com.jcneto.tp3_lecodemorse;
 
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
-import android.media.TimedText;
-import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static java.lang.Thread.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,53 +29,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
         final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
-//        final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
-//        final MediaPlayer dit = MediaPlayer.create(this, R.raw.dit);
-//        final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
-        // Pour afficher une msg
-        /**
-         *
-         */
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Attention !");
-        builder.setMessage(
-                "Utilisez l'espace pour chaque code \n" +
-                        "de lettre tapé, et une barre oblique \n" +
-                        "pour marquer les espaces entre les mots.");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
-
-        {
-            public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(MainActivity.this, "Entre votre code morse\n" + "ou une phrase alpha", Toast.LENGTH_SHORT).show();
+        // Listenre Button
+        Button b = (Button) findViewById(R.id.btJouer);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playMorse();
             }
         });
-        alert = builder.create();
-        alert.show();
-        // Listenre Button
-//        Button b = (Button) findViewById(R.id.btJouer);
-//        b.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                System.out.println("WoW");
-//                System.out.println(editTextMorse.getText().toString());
-//                String morse = editTextMorse.getText().toString();
-//                dit.start();
-//                for (int i = 0; i < morse.length(); i++) {
-//                    System.out.println("WoW");
-//                    String morseToPlay = String.valueOf(morse.charAt(i));
-//                    if (morseToPlay.equals(".")) {
-//                        dit.start();
-//                    } else if (morseToPlay.equals("-")) {
-//                        dah.start();
-//                    } else if (morseToPlay.equals(" ")) {
-//                        esp.start();
-//                    } else if (morseToPlay.equals("/")) {
-//                        esp.start();
-//                        esp.start();
-//                    }
-//                }
-//            }
-//        });
         // Listenre TextView
         editTextAlpha.addTextChangedListener(new TextWatcher() {
             @Override
@@ -114,6 +77,28 @@ public class MainActivity extends AppCompatActivity {
                 TextView textViewEntre = (TextView) findViewById(R.id.textEntre);
                 textViewEntre.setText(editTextMorse.getText());
                 alpha = traducteurMorse.toAlpha(editable.toString());
+                morse = editable.toString();
+                /**
+                 *
+                 */
+                if (alpha.equals("")) {
+                    System.out.println("WOOWOWOOOW");
+                    builder.setTitle("Attention !");
+                    builder.setMessage(
+                            "Utilisez l'espace pour chaque code \n" +
+                                    "de lettre tapé, et une barre oblique \n" +
+                                    "pour marquer les espaces entre les mots.");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+
+                    {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Toast.makeText(MainActivity.this, "Entre votre code morse\n" + "ou une phrase alpha", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    alert = builder.create();
+                    alert.show();
+                }
+
             }
         });
 
@@ -168,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * funcBackendBy
+     * Afficher une message avec les nons de les
+     * programmeurs qui a develope la application
+     *
      * @param v
      */
     public void funcBackendBy(View v) {
@@ -204,29 +193,28 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-//    public void playMorse(View v) {
-//        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
-//        final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
-//        final MediaPlayer dit = MediaPlayer.create(this, R.raw.dit);
-//        final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
-//        String morse = editTextMorse.toString();
-//        dit.start();
-//        System.out.println(morse.toString());
-//        String[] morseToPlay = morse.split("");
-//        for (int i = 0; i < morseToPlay.length; i++) {
-//            if (morseToPlay[i].equals("."))
-//                dit.start();
-//            if (morseToPlay[i].equals("-"))
-//                dah.start();
-//            if (morseToPlay[i].equals(" "))
-//                esp.start();
-//            if (morseToPlay[i].equals("/")) {
-//                esp.start();
-//                esp.start();
-//            }
-//
-//        }
-//
-//    }
+    public void playMorse() {
+        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+        final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
+        final MediaPlayer dit = MediaPlayer.create(this, R.raw.dit);
+        final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
+        String morse = editTextMorse.toString();
+        System.out.println(morse.toString());
+        final String[] morseToPlay = morse.split("");
+        for (int i = 0; i < morseToPlay.length; i++) {
+            if (morseToPlay[i].equals("."))
+                dit.start();
+            if (morseToPlay[i].equals("-"))
+                dah.start();
+
+            if (morseToPlay[i].equals(" "))
+                esp.start();
+            if (morseToPlay[i].equals("/")) {
+                esp.start();
+                esp.start();
+            }
+
+        }
+    }
 
 }
