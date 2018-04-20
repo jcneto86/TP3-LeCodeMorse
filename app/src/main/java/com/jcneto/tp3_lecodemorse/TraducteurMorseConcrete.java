@@ -15,7 +15,7 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
      * @return L'equivalent en caracteres latins.
      */
     public String toAlpha(String morse) {
-        String[] morseToConvertir = morse.split("\\s");
+        String[] morseToConvertir = morse.split(" ");
         String alphaToReturn = "";
         for (int i = 0; i < morseToConvertir.length; i++) {
             for (int j = 0; j < arrayMorse.length; j++) {
@@ -27,7 +27,7 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
                 alphaToReturn += " ";
             }
         }
-        return alphaToReturn;
+        return alphaToReturn.replaceAll("\\s+$", "");
     }
 
     /**
@@ -56,7 +56,7 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
                 morseToReturn += " ";
             }
         }
-        return morseToReturn;
+        return morseToReturn.replaceAll("\\s+$", "");
     }
 
     /**
