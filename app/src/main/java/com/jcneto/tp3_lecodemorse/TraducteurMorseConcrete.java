@@ -56,7 +56,8 @@ public class TraducteurMorseConcrete implements TraducteurMorse {
                 morseToReturn += " ";
             }
         }
-        return morseToReturn.replaceAll("\\s+$", "");
+        morseToReturn.replaceAll("\\s+$", "");
+        return morseToReturn;
     }
 
     /**
