@@ -16,19 +16,30 @@
         <EditText
             android:id="@+id/editTextMorse"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:ems="10"
             android:hint="@string/morse"
             android:inputType="none|textPersonName"
-            android:keyboardNavigationCluster="false"/>
+            android:keyboardNavigationCluster="false"
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/editTextAlpha"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="-45dp"
             android:ems="10"
             android:hint="@string/alpha"
-            android:inputType="none|textPersonName" />
+            android:inputType="none|textPersonName"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btChangerAlphaMorse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/traduire_le_morse"
+            android:onClick="changerAlphaMorse"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -165,7 +176,7 @@
                 android:id="@+id/btBackend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="50dp"
                 android:layout_weight="1"
                 android:onClick="funcBackendBy"
                 android:text="@string/backend_by"
@@ -174,17 +185,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="24dp"
-        android:clickable="true"
-        android:onClick="alertAttention"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_alert" />
 
 </android.support.constraint.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.jcneto.tp3_lecodemorse;
 
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import static java.lang.Thread.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,16 +26,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
         final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        // Listenre Button
+        // Listened Button
         Button b = (Button) findViewById(R.id.btJouer);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playMorse();
+                try {
+                    playMorse();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
-        // Listenre TextView
+        // Listened TextView
         editTextAlpha.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -79,24 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 alpha = traducteurMorse.toAlpha(editable.toString());
                 morse = editable.toString();
                 /**
-                 *
+                 * Vérifiez si le alpha est vide et si le morse n'est pas vide
+                 * pour afficher un message d'erreur
                  */
-                if (alpha.equals("")) {
-                    System.out.println("WOOWOWOOOW");
-                    builder.setTitle("Attention !");
-                    builder.setMessage(
-                            "Utilisez l'espace pour chaque code \n" +
-                                    "de lettre tapé, et une barre oblique \n" +
-                                    "pour marquer les espaces entre les mots.");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
-
-                    {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Toast.makeText(MainActivity.this, "Entre votre code morse\n" + "ou une phrase alpha", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    alert = builder.create();
-                    alert.show();
+                if (alpha.equals("") && !morse.isEmpty()) {
+                    alertAttention();
                 }
 
             }
@@ -105,7 +92,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * @param v
+     * funcTire(View v)
+     * Ajouter un point dans la variable Morse pour l'affichage
+     *
+     * @param v Un bouton pour appeler la méthode
      */
     public void funcTire(View v) {
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
@@ -114,7 +104,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * @param v
+     * funcPoint(View v)
+     * Ajouter un point dans la variable Morse pour l'affichage
+     *
+     * @param v Un bouton pour appeler la méthode
      */
     public void funcPoint(View v) {
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
@@ -123,7 +116,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * @param v
+     * funBarreOblique(View v)
+     * Ajouter une barre oblique dans la variable Morse pour l'affichage
+     *
+     * @param v Un bouton pour appeler la méthode
      */
     public void funBarreOblique(View v) {
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
@@ -131,8 +127,10 @@ public class MainActivity extends AppCompatActivity {
         editTextMorse.setText(morse);
     }
 
-    /**
-     * @param v
+    /** funcEspace(View v)
+     *  Ajouter un espace dans la variable Morse pour l'affichage
+     *
+     * @param v Un bouton pour appeler la méthode
      */
     public void funcEspace(View v) {
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
@@ -140,8 +138,10 @@ public class MainActivity extends AppCompatActivity {
         editTextMorse.setText(morse);
     }
 
-    /**
-     * @param v
+    /** funcEfface(View v)
+     * Efface les EditText et les vabiable garder les valeur du morse et alpha.
+     *
+     * @param v Un bouton pour appeler la méthode
      */
     public void funcEfface(View v) {
         final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
      * Afficher une message avec les nons de les
      * programmeurs qui a develope la application
      *
-     * @param v
+     * @param v Un bouton pour appeler la méthode
      */
     public void funcBackendBy(View v) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -173,13 +173,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * @param v
+     *
+     * @param v Un bouton pour appeler la méthode
      */
-    public void alertAttention(View v) {
+    public void changerAlphaMorse(View v) {
+        final EditText toMorse = (EditText) findViewById(R.id.editTextMorse);
+        final EditText toAlpha = (EditText) findViewById(R.id.editTextAlpha);
+        final Button btEspace = (Button) findViewById(R.id.btEspace);
+        final Button btPoint = (Button) findViewById(R.id.btPoint);
+        final Button btTire = (Button) findViewById(R.id.btTire);
+        final Button btBarreOblique = (Button) findViewById(R.id.btBarreOblique);
+        final Button chagerAlphaMorse = (Button) findViewById(R.id.btChangerAlphaMorse);
+        if (toMorse.getVisibility() == View.VISIBLE) {
+            toMorse.setVisibility(View.INVISIBLE);
+            btEspace.setVisibility(View.INVISIBLE);
+            btPoint.setVisibility(View.INVISIBLE);
+            btTire.setVisibility(View.INVISIBLE);
+            btBarreOblique.setVisibility(View.INVISIBLE);
+            toAlpha.setVisibility(View.VISIBLE);
+            chagerAlphaMorse.setText("Traduire le morse");
+        } else {
+            toAlpha.setVisibility(View.INVISIBLE);
+            toMorse.setVisibility(View.VISIBLE);
+            btEspace.setVisibility(View.VISIBLE);
+            btPoint.setVisibility(View.VISIBLE);
+            btTire.setVisibility(View.VISIBLE);
+            btBarreOblique.setVisibility(View.VISIBLE);
+            chagerAlphaMorse.setText("Traduire l\'alpha");
+        }
+    }
+
+    /**
+     *
+     */
+    public void alertAttention() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Attention !");
         builder.setMessage(
-                "Utilisez l'espace pour chaque code \n" +
+                "Utilisez seulement le point, le tiret, l\'espace \n " +
+                        "et la barre pour écrire en morse.\n" +
+                        "Toujours taper l'espace pour chaque code \n" +
                         "de lettre tapé, et une barre oblique \n" +
                         "pour marquer les espaces entre les mots.");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
@@ -193,25 +226,37 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-    public void playMorse() {
-        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+    /**
+     *
+     * @throws InterruptedException
+     */
+    public void playMorse() throws InterruptedException {
         final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
         final MediaPlayer dit = MediaPlayer.create(this, R.raw.dit);
         final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
-        String morse = editTextMorse.toString();
-        System.out.println(morse.toString());
-        final String[] morseToPlay = morse.split("");
+        System.out.print("\n");
+        String[] morseToPlay = morse.split("");
+        for (int i = 0; i < morse.length() ; i++) {
+            System.out.print(morseToPlay[i] + "*");
+        }
+        System.out.print("\n");
         for (int i = 0; i < morseToPlay.length; i++) {
-            if (morseToPlay[i].equals("."))
+            if (morseToPlay[i].equals(".")){
                 dit.start();
-            if (morseToPlay[i].equals("-"))
+                Thread.sleep(900);
+            }
+            if (morseToPlay[i].equals("-")) {
                 dah.start();
-
-            if (morseToPlay[i].equals(" "))
+                Thread.sleep(1000);
+            }
+            if (morseToPlay[i].equals(" ")) {
                 esp.start();
+                Thread.sleep(900);
+            }
             if (morseToPlay[i].equals("/")) {
                 esp.start();
                 esp.start();
+                Thread.sleep(1200);
             }
 
         }

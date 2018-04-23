@@ -13,4 +13,5 @@
     <string name="entre">Entre :</string>
     <string name="sortir">Sortir :</string>
     <string name="backend_by">Backend By</string>
+    <string name="traduire_le_morse">Traduire l\'alpha</string>
 </resources>
