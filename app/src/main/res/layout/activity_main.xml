@@ -38,8 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/traduire_le_morse"
-            android:onClick="changerAlphaMorse"/>
+            android:onClick="changerAlphaMorse"
+            android:text="@string/traduire_le_alpha" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
-        final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
+        final EditText editTextMorse = findViewById(R.id.editTextMorse);
+        final EditText editTextAlpha = findViewById(R.id.editTextAlpha);
         // Listened Button
-        Button b = (Button) findViewById(R.id.btJouer);
+        Button b = findViewById(R.id.btJouer);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                TextView textViewSorti = (TextView) findViewById(R.id.textSorti);
+                TextView textViewSorti = findViewById(R.id.textSorti);
                 textViewSorti.setText(traducteurMorse.toMorse(editable.toString()));
-                TextView textViewEntre = (TextView) findViewById(R.id.textEntre);
+                TextView textViewEntre = findViewById(R.id.textEntre);
                 textViewEntre.setText(traducteurMorse.nettoyerAlpha(editable.toString()));
                 morse = traducteurMorse.toMorse(editable.toString());
             }
@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                TextView textViewSorti = (TextView) findViewById(R.id.textSorti);
+                TextView textViewSorti = findViewById(R.id.textSorti);
                 textViewSorti.setText(traducteurMorse.toAlpha(editable.toString()));
-                TextView textViewEntre = (TextView) findViewById(R.id.textEntre);
+                TextView textViewEntre = findViewById(R.id.textEntre);
                 textViewEntre.setText(editTextMorse.getText());
                 alpha = traducteurMorse.toAlpha(editable.toString());
                 morse = editable.toString();
-                /**
+                /*
                  * Vérifiez si le alpha est vide et si le morse n'est pas vide
                  * pour afficher un message d'erreur
                  */
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v Un bouton pour appeler la méthode
      */
     public void funcTire(View v) {
-        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+        final EditText editTextMorse = findViewById(R.id.editTextMorse);
         morse += "-";
         editTextMorse.setText(morse);
     }
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v Un bouton pour appeler la méthode
      */
     public void funcPoint(View v) {
-        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+        final EditText editTextMorse = findViewById(R.id.editTextMorse);
         morse += ".";
         editTextMorse.setText(morse);
     }
@@ -122,30 +122,32 @@ public class MainActivity extends AppCompatActivity {
      * @param v Un bouton pour appeler la méthode
      */
     public void funBarreOblique(View v) {
-        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+        final EditText editTextMorse = findViewById(R.id.editTextMorse);
         morse += "/";
         editTextMorse.setText(morse);
     }
 
-    /** funcEspace(View v)
-     *  Ajouter un espace dans la variable Morse pour l'affichage
+    /**
+     * funcEspace(View v)
+     * Ajouter un espace dans la variable Morse pour l'affichage
      *
      * @param v Un bouton pour appeler la méthode
      */
     public void funcEspace(View v) {
-        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
+        final EditText editTextMorse = findViewById(R.id.editTextMorse);
         morse += " ";
         editTextMorse.setText(morse);
     }
 
-    /** funcEfface(View v)
+    /**
+     * funcEfface(View v)
      * Efface les EditText et les vabiable garder les valeur du morse et alpha.
      *
      * @param v Un bouton pour appeler la méthode
      */
     public void funcEfface(View v) {
-        final EditText editTextMorse = (EditText) findViewById(R.id.editTextMorse);
-        final EditText editTextAlpha = (EditText) findViewById(R.id.editTextAlpha);
+        final EditText editTextMorse = findViewById(R.id.editTextMorse);
+        final EditText editTextAlpha = findViewById(R.id.editTextAlpha);
         morse = "";
         alpha = "";
         editTextMorse.setText("");
@@ -173,17 +175,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * changerAlphaMorse(View v)
+     * Fonction qui contrôle l'affichage des boutons dans le panneau de l'utilisateur
      *
      * @param v Un bouton pour appeler la méthode
      */
     public void changerAlphaMorse(View v) {
-        final EditText toMorse = (EditText) findViewById(R.id.editTextMorse);
-        final EditText toAlpha = (EditText) findViewById(R.id.editTextAlpha);
-        final Button btEspace = (Button) findViewById(R.id.btEspace);
-        final Button btPoint = (Button) findViewById(R.id.btPoint);
-        final Button btTire = (Button) findViewById(R.id.btTire);
-        final Button btBarreOblique = (Button) findViewById(R.id.btBarreOblique);
-        final Button chagerAlphaMorse = (Button) findViewById(R.id.btChangerAlphaMorse);
+        final EditText toMorse = findViewById(R.id.editTextMorse);
+        final EditText toAlpha = findViewById(R.id.editTextAlpha);
+        final Button btEspace = findViewById(R.id.btEspace);
+        final Button btPoint = findViewById(R.id.btPoint);
+        final Button btTire = findViewById(R.id.btTire);
+        final Button btBarreOblique = findViewById(R.id.btBarreOblique);
+        final Button chagerAlphaMorse = findViewById(R.id.btChangerAlphaMorse);
         if (toMorse.getVisibility() == View.VISIBLE) {
             toMorse.setVisibility(View.INVISIBLE);
             btEspace.setVisibility(View.INVISIBLE);
@@ -199,11 +203,13 @@ public class MainActivity extends AppCompatActivity {
             btPoint.setVisibility(View.VISIBLE);
             btTire.setVisibility(View.VISIBLE);
             btBarreOblique.setVisibility(View.VISIBLE);
-            chagerAlphaMorse.setText("Traduire l\'alpha");
+            chagerAlphaMorse.setText("Traduire_le_alpha");
         }
     }
 
     /**
+     * alertAttention()
+     * Fonction qui montre une alerte sur la bonne façon d'entrer le code morse
      *
      */
     public void alertAttention() {
@@ -227,8 +233,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * playMorse()
+     * Faire jouer le son du code morse qui est afficher sur le chaim de sorti.
      *
-     * @throws InterruptedException
      */
     public void playMorse() throws InterruptedException {
         final MediaPlayer dah = MediaPlayer.create(this, R.raw.dah);
@@ -236,27 +243,27 @@ public class MainActivity extends AppCompatActivity {
         final MediaPlayer esp = MediaPlayer.create(this, R.raw.espace);
         System.out.print("\n");
         String[] morseToPlay = morse.split("");
-        for (int i = 0; i < morse.length() ; i++) {
+        for (int i = 0; i < morse.length(); i++) {
             System.out.print(morseToPlay[i] + "*");
         }
         System.out.print("\n");
         for (int i = 0; i < morseToPlay.length; i++) {
-            if (morseToPlay[i].equals(".")){
+            if (morseToPlay[i].equals(".")) {
                 dit.start();
-                Thread.sleep(900);
+                Thread.sleep(700);
             }
             if (morseToPlay[i].equals("-")) {
                 dah.start();
-                Thread.sleep(1000);
+                Thread.sleep(800);
             }
             if (morseToPlay[i].equals(" ")) {
                 esp.start();
-                Thread.sleep(900);
+                Thread.sleep(800);
             }
             if (morseToPlay[i].equals("/")) {
                 esp.start();
                 esp.start();
-                Thread.sleep(1200);
+                Thread.sleep(900);
             }
 
         }
