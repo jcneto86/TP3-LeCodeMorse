@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                  * Vérifiez si le alpha est vide et si le morse n'est pas vide
                  * pour afficher un message d'erreur
                  */
-                if (alpha.equals("") && !morse.isEmpty()) {
+                if (alpha.isEmpty() && !morse.isEmpty()) {
                     alertAttention();
                 }
 
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
             btPoint.setVisibility(View.VISIBLE);
             btTire.setVisibility(View.VISIBLE);
             btBarreOblique.setVisibility(View.VISIBLE);
-            chagerAlphaMorse.setText("Traduire_le_alpha");
+            chagerAlphaMorse.setText("Traduire l\'alpha");
         }
     }
 
